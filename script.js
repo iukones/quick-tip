@@ -1,6 +1,19 @@
+function formatMoney(value) {
+  console.log(value);
+
+  value = Math.ceil(value * 100) / 100;
+  console.log(value);
+
+  value = value.toFixed(2);
+  return '$ ' + value;
+}
+
+function formatSplit(value){
+  if(value === '1') return value + ' person';
+  return value + ' people';
+}
 
 function update() {
-  
   let bill = Number(document.getElementById('yourBill').value);
   let tipPercent = document.getElementById('tipInput').value;
   let split = document.getElementById('splitInput').value;
@@ -12,16 +25,11 @@ function update() {
   // console.log(newBillEach);
 
   document.getElementById('tipPercent').innerHTML = tipPercent + '%';
-  document.getElementById('tipValue').innerHTML = tipValue;
-  document.getElementById('totalWithTip').innerHTML = bill + tipValue;
-  document.getElementById('splitValue').innerHTML = split + ' person';
-  document.getElementById('billEach').innerHTML = newBillEach;
-  document.getElementById('tipEach').innerHTML = tipEach;
-  
-
-  
-
-
+  document.getElementById('tipValue').innerHTML = formatMoney(tipValue);
+  document.getElementById('totalWithTip').innerHTML = formatMoney(bill + tipValue);
+  document.getElementById('splitValue').innerHTML = formatSplit(split);
+  document.getElementById('billEach').innerHTML = formatMoney(newBillEach);
+  document.getElementById('tipEach').innerHTML = formatMoney(tipEach);
 }
 
 let container = document.getElementById('container');
